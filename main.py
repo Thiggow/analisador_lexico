@@ -1,13 +1,10 @@
 from LexicalAnalyzer import LexicalAnalyzer
 
 with open("files/input/source_code.txt", "r", encoding="utf8") as rd:
-    lines = rd.readlines()
+    source_code = rd.readlines()
 
-# symbols = []
-# for line in code:
-#     symbols += [symbol for symbol in line.split(" ")]
+lines = [line.replace("\n", "\\") for line in source_code]
 
-print(lines)
 La = LexicalAnalyzer()
 
 for line in lines:
@@ -27,7 +24,7 @@ for line in lines:
                 i-=1
                 lexeme = lexeme[:-1].strip()
 
-            La.add_tokens_list(state, lexeme)
+            La.add_symbols_table(state, lexeme)
             state = 0
             lexeme = ""
 
